@@ -11,7 +11,8 @@
     "extensions": {
       "http": {
         "customHeaders": {
-          "Access-Control-Expose-Headers": "*"
+          "Access-Control-Expose-Headers": "*",
+          "Access-Control-Allow-Origin": "https://httptriggerfunction.azurewebsites.net"
         }
       }
     }
