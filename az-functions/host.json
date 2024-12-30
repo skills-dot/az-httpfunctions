@@ -1,5 +1,5 @@
 {
-    "version": "2.0",
+  "version": "2.0",
   "logging": {
     "applicationInsights": {
       "samplingSettings": {
@@ -11,8 +11,7 @@
     "extensions": {
       "http": {
         "customHeaders": {
-          "Access-Control-Expose-Headers": "*",
-          "Access-Control-Allow-Origin": "https://httptriggerfunction.azurewebsites.net"
+          "Access-Control-Expose-Headers": "*"
         }
       }
     }
