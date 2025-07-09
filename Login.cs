@@ -20,8 +20,8 @@ namespace az_functions
             _logger = loggerFactory.CreateLogger<Login>();
         }
 
-        [Function("LoginFunction")]
-        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestData req, ILogger log
+        [Function("GetLoginDetails")]
+        public async Task<HttpResponseData> GetLoginDetails([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestData req, ILogger log
             ,[SqlInput("select [UserName],[password] from [LOGIN]",
             "SqlConnectionString")]
             IEnumerable<LoginReponse> loginReponse
