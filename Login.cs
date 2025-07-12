@@ -21,8 +21,8 @@ namespace az_functions
         }
 
         [Function("GetLoginDetails")]
-        public async Task<HttpResponseData> GetLoginDetails([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestData req, ILogger log
-            ,[SqlInput("select [UserName],[password] from [LOGIN]",
+        public async Task<HttpResponseData> GetLoginDetails([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequestData req, ILogger log
+            ,[SqlInput("select [userName],[password] from [LOGIN]",
             "SqlConnectionString")]
             IEnumerable<LoginReponse> loginReponse
             )
