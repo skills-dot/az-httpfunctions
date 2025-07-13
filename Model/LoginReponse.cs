@@ -11,6 +11,6 @@ namespace az_functions.Model
     {
         public string UserName { set; get; }=string.Empty;
         public string password { set; get; } = string.Empty;
-        public static HttpResponseData ResponseData { set; get; }
+        public static HttpResponseData? ResponseData { set; get; }
     }
 }
