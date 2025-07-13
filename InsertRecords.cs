@@ -19,14 +19,25 @@ public class InsertRecords
     }
 
     [Function("InsertRecords")]
-    [SqlOutput("dbo.LOGIN", "SqlConnectionString")]
-    public async Task<UserRequest> InsertRecord([HttpTrigger(AuthorizationLevel.Anonymous,  "post", Route = "Inseruser")] HttpRequestData req)
+  
+    public async Task<OutputReposne> InsertRecord([HttpTrigger(AuthorizationLevel.Function,  "post", Route = "Inseruser")] HttpRequestData req)
     {
-        UserRequest user= new UserRequest();
+        UserRequest user = new UserRequest();
         _logger.LogInformation("C# HTTP trigger function processed a request.");
         string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
         var data = JsonConvert.DeserializeObject<UserRequest>(requestBody);
-        
-        return data ?? new UserRequest();
+        if(string.IsNullOrEmpty(data?.UserName) || string.IsNullOrEmpty(data?.Password)) {
+            var resposne = req.CreateResponse(System.Net.HttpStatusCode.BadRequest);
+          
+            await  resposne.WriteStringAsync("UserName or password should not be empty");   
+            return new OutputReposne()
+            {
+                UserRequest =  new UserRequest(),
+                httpResponseData = resposne
+            };
+        }
+           
+        return  new OutputReposne() { UserRequest= data ?? new UserRequest(),
+            httpResponseData= req.CreateResponse(System.Net.HttpStatusCode.OK)};
     }
 }
